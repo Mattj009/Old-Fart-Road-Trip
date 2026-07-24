@@ -3,3 +3,15 @@
 @media(max-width:850px){.itinerary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tools{grid-template-columns:repeat(2,minmax(0,1fr))}.two,.meals{grid-template-columns:1fr}}
 @media(max-width:560px){body{font-size:17px}.shell{padding:16px}.topbar{align-items:flex-start}.topbar img{width:66px;height:66px}.itinerary-grid{grid-template-columns:1fr}.day-card{grid-template-columns:90px 1fr;min-height:126px}.tools{grid-template-columns:1fr}.btn{width:100%}.navrow{display:grid}.panel{border-radius:16px}.day-logo{width:min(220px,55vw)}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* OFT mobile app navigation */
+body.day-page{padding-bottom:88px}
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:1000;display:grid;grid-template-columns:repeat(3,1fr);padding:8px max(10px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));background:rgba(13,40,28,.97);border-top:3px solid var(--gold);box-shadow:0 -8px 20px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
+.bottom-nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:58px;color:white;text-decoration:none;font-weight:900;font-size:.82rem;border-radius:13px;transition:transform .1s,background .1s}
+.bottom-nav .nav-icon{font-size:1.65rem;line-height:1}
+.bottom-nav a:hover,.bottom-nav a:focus-visible{background:rgba(255,255,255,.10)}
+.bottom-nav a:active{transform:scale(.96);background:rgba(255,255,255,.18)}
+.interior-logo{display:block;width:min(330px,72vw);height:auto;margin:20px auto;filter:drop-shadow(0 8px 10px rgba(0,0,0,.18))}
+.reminder{opacity:0;animation:reminderIn .75s ease 5s forwards,pulse 1.7s ease-in-out 5.75s infinite}
+@keyframes reminderIn{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.reminder{opacity:1}}

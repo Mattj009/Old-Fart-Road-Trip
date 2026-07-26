@@ -15,3 +15,9 @@ body.day-page{padding-bottom:88px}
 .reminder{opacity:0;animation:reminderIn .75s ease 5s forwards,pulse 1.7s ease-in-out 5.75s infinite}
 @keyframes reminderIn{to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.reminder{opacity:1}}
+.feature-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,320px);gap:22px;align-items:center}
+.feature-art{width:100%;height:auto;display:block;border-radius:16px;border:2px solid #ded8c7;box-shadow:0 8px 18px rgba(0,0,0,.16)}
+.small-art{width:min(100%,340px);display:block;margin:14px auto;border-radius:14px;border:2px solid #ded8c7}
+.photo-caption{text-align:center;font-style:italic;color:var(--muted);font-size:.95rem}
+.credit{display:block;margin-top:6px;font-size:.8rem;color:#dfe9e0}
+@media(max-width:760px){.feature-grid{grid-template-columns:1fr}.feature-art{max-width:420px;margin:auto}}

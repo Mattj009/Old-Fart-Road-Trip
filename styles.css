@@ -21,3 +21,7 @@ body.day-page{padding-bottom:88px}
 .photo-caption{text-align:center;font-style:italic;color:var(--muted);font-size:.95rem}
 .credit{display:block;margin-top:6px;font-size:.8rem;color:#dfe9e0}
 @media(max-width:760px){.feature-grid{grid-template-columns:1fr}.feature-art{max-width:420px;margin:auto}}
+
+/* Day 4 meal cards: keep text readable and artwork contained */
+.meal .feature-grid{grid-template-columns:1fr;align-items:start}
+.meal .feature-art{width:min(100%,360px);max-height:360px;object-fit:contain;margin:8px auto 0}

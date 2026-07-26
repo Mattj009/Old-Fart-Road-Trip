@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 8 - Page to Zion National Park</title>
+  <style>
+    :root {
+      --bg: #f4efe4;
+      --card: #fffaf2;
+      --ink: #3f2d21;
+      --accent: #7c4a21;
+      --accent2: #2f5e3e;
+      --gold: #c7912f;
+      --line: #d9ccb8;
+      --shadow: 0 6px 18px rgba(62, 39, 16, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #efe6d7 0%, #f8f3ea 100%);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+    .page {
+      width: min(100%, 860px);
+      margin: 0 auto;
+      padding: 16px 14px 30px;
+    }
+    .banner {
+      background: linear-gradient(135deg, #5d3d22 0%, #7a4d23 100%);
+      color: #fff7e8;
+      border-radius: 18px;
+      padding: 18px 18px 14px;
+      box-shadow: var(--shadow);
+      border: 3px solid #a47335;
+      text-align: center;
+    }
+    .banner .small {
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+    .banner h1 {
+      margin: 6px 0 4px;
+      font-size: clamp(1.85rem, 4.8vw, 2.8rem);
+      line-height: 1.08;
+    }
+    .banner .message {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #ffe1a8;
+      font-size: 1rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 16px;
+      box-shadow: var(--shadow);
+    }
+    .hero-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .hero-logo {
+      width: 108px;
+      height: 108px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+    .date-line {
+      color: #775743;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 1.45rem;
+    }
+    h3 {
+      margin: 0 0 10px;
+      color: var(--accent2);
+      font-size: 1.15rem;
+    }
+    p { margin: 0 0 12px; }
+    .hero-image, .wide-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      margin-top: 12px;
+    }
+    .plan-item {
+      padding: 12px 0;
+      border-top: 1px dashed #d9ccb8;
+    }
+    .plan-item:first-child { border-top: none; padding-top: 0; }
+    .plan-item .time {
+      font-weight: bold;
+      color: var(--accent2);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      background: linear-gradient(180deg, #a76b32 0%, #8a5321 100%);
+      color: white;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: bold;
+      border: 1px solid #724014;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    }
+    .btn.green {
+      background: linear-gradient(180deg, #47734d 0%, #315b37 100%);
+      border-color: #27482b;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .note {
+      background: #fff3d9;
+      border: 1px solid #eccd8d;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 10px;
+    }
+    ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+    li { margin: 8px 0; }
+    .caption {
+      font-size: 0.95rem;
+      color: #6a5549;
+      margin-top: 8px;
+    }
+    .footer {
+      text-align: center;
+      color: #7b665a;
+      font-size: 0.92rem;
+      margin-top: 18px;
+      padding-bottom: 14px;
+    }
+    @media (min-width: 760px) {
+      .split.two {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="banner">
+      <div class="small">Old Fart Travel presents</div>
+      <h1>Day 8 • Page to Zion National Park</h1>
+      <div>Upper Antelope Canyon • Springdale • Zion National Park</div>
+      <div class="message">Today&apos;s Message: Pool Night</div>
+    </header>
+
+    <section class="card">
+      <div class="hero-head">
+        <img class="hero-logo" src="assets/day8-antelope-logo.png" alt="Old Fart Antelope Canyon logo">
+        <div>
+          <div class="date-line">Saturday, August 8</div>
+          <h2 style="margin-bottom:6px;">Today&apos;s Plan</h2>
+          <p style="margin-bottom:0;">Today is all about transitions—from Page to Zion, from sightseeing to relaxing, and from Arizona to Utah.</p>
+        </div>
+      </div>
+      <p style="margin-top:14px;">Yesterday, we left a place with tremendous views looking down into a canyon. Today and tomorrow, we&apos;ll experience the Southwest from a completely different perspective. Instead of standing on the rim looking down, we&apos;ll be walking through canyons, surrounded by towering sandstone walls stretching toward the sky.</p>
+      <img class="hero-image" src="assets/day8-antelope-canyon.jpg" alt="Upper Antelope Canyon">
+    </section>
+
+    <section class="card">
+      <h2>Schedule</h2>
+      <div class="plan-item">
+        <span class="time">😴 Sleep in!</span>
+        <div>This is one of the few mornings on the trip without an early alarm. Enjoy the slower pace—you&apos;ve earned it.</div>
+      </div>
+      <div class="plan-item">
+        <span class="time">🍳 Breakfast / Early Lunch in Page</span>
+        <div>The Hampton Inn offers a complimentary hot breakfast, but depending on how everyone feels, this is also a great morning to enjoy a leisurely breakfast or early lunch in Page before the tour.</div>
+      </div>
+      <div class="plan-item">
+        <span class="time">📸 12:30–12:40 PM • Tour Check-In</span>
+        <div>Check in for our Upper Antelope Canyon tour.</div>
+      </div>
+      <div class="plan-item">
+        <span class="time">🪨 1:25 PM • Upper Antelope Canyon</span>
+        <div>Board a shuttle to the canyon entrance and enjoy a guided 90-minute walking tour through one of the most photographed slot canyons in the world. Wind and water have carved these graceful sandstone passages over thousands of years, creating an ever-changing display of light, color, and texture.</div>
+      </div>
+      <div class="plan-item">
+        <span class="time">🚐 Drive to Springdale</span>
+        <div>Drive time: approximately 2½ hours. Estimated arrival: around 6:00 PM.</div>
+      </div>
+      <div class="plan-item">
+        <span class="time">🏨 Welcome to Springdale</span>
+        <div>Check into the Hampton Inn &amp; Suites Springdale/Zion National Park, currently TripAdvisor&apos;s top-rated hotel in Springdale.</div>
+      </div>
+      <div class="plan-item">
+        <span class="time">🥪 Tonight&apos;s Plan</span>
+        <div>Pick up Subway sandwiches on the way to the hotel, enjoy dinner al fresco by the pool, then follow it with a swim or a soak in the hot tub. Take a moment to appreciate the incredible cliffs surrounding the hotel. The pool closes at 10:00 PM.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Helpful Links</h2>
+      <div class="button-grid">
+        <a class="btn" href="https://maps.app.goo.gl/oz1u9Nu7EiaNYXNN6" target="_blank" rel="noopener noreferrer">🗺 Google Map</a>
+        <a class="btn" href="https://music.youtube.com/playlist?list=PLcSR2kBdaloU&si=yQI027Iax_Rne9Eh" target="_blank" rel="noopener noreferrer">🎵 Playlist</a>
+        <a class="btn" href="https://weather.com/us/arizona/city/page/today" target="_blank" rel="noopener noreferrer">🌤 Page Weather</a>
+        <a class="btn" href="https://weather.com/us/utah/city/springdale/today" target="_blank" rel="noopener noreferrer">🌤 Springdale Weather</a>
+        <a class="btn green" href="https://www.tripadvisor.com/Restaurants-g60834-Page_Arizona.html" target="_blank" rel="noopener noreferrer">🍳 Page Dining Options</a>
+        <a class="btn green" href="https://www.subway.com/en-us" target="_blank" rel="noopener noreferrer">🥪 Subway</a>
+        <a class="btn green" href="https://www.hilton.com/en/hotels/sguzihx-hampton-suites-springdale-zion-national-park/" target="_blank" rel="noopener noreferrer">🏨 Hampton Inn</a>
+      </div>
+      <div class="note"><strong>Playlist Note:</strong> Today&apos;s playlist is an encore of Day 1 — Phoenix to Monument Valley.</div>
+    </section>
+
+    <section class="card">
+      <div class="split two">
+        <div>
+          <h2>Meals</h2>
+          <h3>Tonight&apos;s Dinner</h3>
+          <p>Subway by the pool at the Hampton Inn &amp; Suites Springdale/Zion National Park.</p>
+          <img class="wide-image" src="assets/day8-subway-banner.png" alt="Subway official sandwich provider banner">
+          <h3 style="margin-top:14px;">Tomorrow Morning in Page</h3>
+          <p>The dining options link is for <strong>breakfast or early lunch in Page</strong> before the Antelope Canyon tour.</p>
+          <div class="button-grid">
+            <a class="btn green" href="https://www.tripadvisor.com/Restaurants-g60834-Page_Arizona.html" target="_blank" rel="noopener noreferrer">Page Dining Options</a>
+          </div>
+        </div>
+        <div>
+          <h2>Hotel</h2>
+          <h3>Hampton Inn &amp; Suites Springdale/Zion National Park</h3>
+          <p>Tonight is intentionally low-key. We&apos;ve spent the past several days exploring some of the Southwest&apos;s greatest scenery. Tomorrow belongs to Zion. Tonight belongs to relaxing.</p>
+          <img class="wide-image" src="assets/day8-zion-pool.jpg" alt="Hampton Inn Springdale pool">
+          <div class="caption">Dinner by the pool, then a swim or a soak in the hot tub beneath Zion&apos;s cliffs.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>OFT Tips</h2>
+      <ul>
+        <li><strong>One does not skip the complimentary Hampton breakfast.</strong> It&apos;s one of the things that separates this hotel from the rest. Fill up here, save a few dollars, and you&apos;ll have plenty of energy for Zion tomorrow.</li>
+        <li><strong>Bus Stop #6 is your friend.</strong> It&apos;s located directly outside the hotel and provides easy access to Zion National Park. Leave the driving behind and let the shuttle do the work.</li>
+        <li><strong>Need clean clothes before Vegas?</strong> Laundry facilities are available on-site.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Daily Bonus</h2>
+      <h3>Road Trip Laundry Division</h3>
+      <p>Should the need arise, Old Fart Travel has identified an official laundry solution for the late-trip wardrobe crisis.</p>
+      <img class="wide-image" src="assets/day8-tide-pods-bonus.png" alt="Tide Pods road trip laundry bonus art">
+      <div class="caption">Friendly reminder: this is a joke. Do not, under any circumstances, eat the Tide Pods.</div>
+    </section>
+
+    <section class="card">
+      <h2>ChatGPT Says...</h2>
+      <p>Old Fart Travel recommends eating Subway beside a pool with Zion&apos;s cliffs towering overhead. Science has yet to explain why a six-inch turkey sandwich tastes noticeably better when consumed in one of America&apos;s most beautiful national parks, but extensive field testing suggests it absolutely does.</p>
+    </section>
+
+    <section class="card">
+      <h2>One Last Thought...</h2>
+      <p>We&apos;ve spent the past week exploring some of the Southwest&apos;s greatest scenery. Tonight isn&apos;t about seeing one more attraction—it&apos;s about enjoying where you are. Float in the pool. Soak in the hot tub. Look up at the cliffs. Tomorrow morning, you&apos;ll wake up in Zion National Park, rested and ready for another unforgettable day.</p>
+      <div class="note"><strong>Tomorrow:</strong> Zion National Park. We&apos;ll leave the car behind, hop aboard the shuttle, and spend the morning exploring one of America&apos;s most spectacular canyon landscapes before heading to Las Vegas to celebrate John&apos;s birthday at T-Bones.</div>
+    </section>
+
+    <div class="footer">Old Fart Road Trip 2.0 • Day 8 • Page 8</div>
+  </div>
+</body>
+</html>

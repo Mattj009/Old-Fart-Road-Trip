@@ -1,14 +1,117 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#173f2b"><title>OFT Twelve-Day Lineup</title><link rel="stylesheet" href="styles.css"></head><body><main class="shell"><header class="topbar"><img src="assets/roadtrip.png" alt=""><div><h1>The Twelve-Day Lineup</h1><p class="kicker">Old Fart Road Trip 2.0</p></div></header><section class="itinerary-grid" aria-label="Trip days">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#173f2b"><title>OFT Twelve-Day Lineup</title><link rel="stylesheet" href="styles.css"><style>
+.password-note{margin:1rem 0;padding:.9rem 1rem;border-radius:14px;background:#fff7d6;border:1px solid #e2c96f;color:#3d3212;font-weight:700;line-height:1.35}
+.locked-day{position:relative}
+.locked-day::after{content:"🔒";position:absolute;right:.75rem;top:.65rem;font-size:1.15rem;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
+.locked-day.is-unlocked::after{content:"✓";color:#1f7a43;font-weight:900}
+.password-modal[hidden]{display:none}
+.password-modal{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:1rem;background:rgba(0,0,0,.72)}
+.password-dialog{width:min(92vw,520px);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;padding:1.25rem;box-shadow:0 24px 70px rgba(0,0,0,.45);color:#1e2b24}
+.password-dialog h2{margin:.1rem 0 .65rem;font-size:1.55rem}
+.password-dialog p{line-height:1.45}
+.password-clue{padding:.9rem 1rem;border-radius:14px;background:#f2f5f3;border-left:5px solid #173f2b}
+.password-input{box-sizing:border-box;width:100%;font-size:1.1rem;padding:.85rem 1rem;border:2px solid #9aa8a0;border-radius:12px;margin:.35rem 0 .65rem}
+.password-actions{display:flex;gap:.65rem;flex-wrap:wrap}
+.password-actions button{cursor:pointer;border:0;border-radius:999px;padding:.75rem 1rem;font-size:1rem;font-weight:800}
+.password-submit{background:#173f2b;color:#fff}
+.password-cancel{background:#e7ebe8;color:#173f2b}
+.password-error{min-height:1.4em;margin:.6rem 0 0;color:#a32020;font-weight:800}
+.password-hint{font-size:.9rem;color:#59655e;margin-top:.25rem}
+</style></head><body><main class="shell"><header class="topbar"><img src="assets/roadtrip.png" alt=""><div><h1>The Twelve-Day Lineup</h1><p class="kicker">Old Fart Road Trip 2.0</p></div></header><p class="password-note">🔐 Days 2–12 are password protected. Enter answers without spaces. Capitalization does not matter. Once a day is unlocked, this device will remember it.</p><section class="itinerary-grid" aria-label="Trip days">
 <a class="day-card" href="day1.html"><img src="assets/monument-valley.png" alt="Monument Valley logo"><div><div class="day">DAY 1</div><div class="place">Phoenix to Monument Valley</div></div></a>
-<a class="day-card" href="day2.html"><img src="assets/day2-monument-valley.png" alt="Monument Valley logo"><div><div class="day">DAY 2</div><div class="place">Monument Valley</div></div></a>
-<a class="day-card" href="day3.html"><img src="assets/day3-canyon-de-chelly.png" alt="Canyon de Chelly logo"><div><div class="day">DAY 3</div><div class="place">Canyon de Chelly</div></div></a>
-<a class="day-card" href="day4.html"><img src="assets/sedona.png" alt="Sedona logo"><div><div class="day">DAY 4</div><div class="place">Sedona</div></div></a>
-<a class="day-card" href="day5.html"><img src="assets/grand-canyon-1.png" alt="Grand Canyon logo"><div><div class="day">DAY 5</div><div class="place">Grand Canyon</div></div></a>
-<a class="day-card" href="day6.html"><img src="assets/grand-canyon-2.png" alt="Grand Canyon logo"><div><div class="day">DAY 6</div><div class="place">Grand Canyon</div></div></a>
-<a class="day-card" href="day7.html"><img src="assets/horseshoe-bend.png" alt="Horseshoe Bend logo"><div><div class="day">DAY 7</div><div class="place">Horseshoe Bend</div></div></a>
-<a class="day-card" href="day8.html"><img src="assets/antelope.png" alt="Antelope Canyon logo"><div><div class="day">DAY 8</div><div class="place">Antelope Canyon</div></div></a>
-<a class="day-card" href="day9.html"><img src="assets/zion.png" alt="Zion National Park logo"><div><div class="day">DAY 9</div><div class="place">Zion National Park</div></div></a>
-<a class="day-card" href="day10.html"><img src="assets/vegas.png" alt="Las Vegas logo"><div><div class="day">DAY 10</div><div class="place">Las Vegas</div></div></a>
-<a class="day-card" href="day11.html"><img src="assets/downtown-vegas.png" alt="Downtown Las Vegas logo"><div><div class="day">DAY 11</div><div class="place">Downtown Las Vegas</div></div></a>
-<a class="day-card" href="day12.html"><img src="assets/leaving-las-vegas.png" alt="Leaving Las Vegas logo"><div><div class="day">DAY 12</div><div class="place">Leaving Las Vegas</div></div></a>
-</section><nav class="navrow"><a class="btn" href="index.html">← Back to cover</a></nav><footer class="footer">Old Fart Travel • 2026 Edition</footer></main></body></html>
+<a class="day-card locked-day" href="day2.html" data-day="2" aria-label="Day 2, locked"><img src="assets/day2-monument-valley.png" alt="Monument Valley logo"><div><div class="day">DAY 2</div><div class="place">Monument Valley</div></div></a>
+<a class="day-card locked-day" href="day3.html" data-day="3" aria-label="Day 3, locked"><img src="assets/day3-canyon-de-chelly.png" alt="Canyon de Chelly logo"><div><div class="day">DAY 3</div><div class="place">Canyon de Chelly</div></div></a>
+<a class="day-card locked-day" href="day4.html" data-day="4" aria-label="Day 4, locked"><img src="assets/sedona.png" alt="Sedona logo"><div><div class="day">DAY 4</div><div class="place">Sedona</div></div></a>
+<a class="day-card locked-day" href="day5.html" data-day="5" aria-label="Day 5, locked"><img src="assets/grand-canyon-1.png" alt="Grand Canyon logo"><div><div class="day">DAY 5</div><div class="place">Grand Canyon</div></div></a>
+<a class="day-card locked-day" href="day6.html" data-day="6" aria-label="Day 6, locked"><img src="assets/grand-canyon-2.png" alt="Grand Canyon logo"><div><div class="day">DAY 6</div><div class="place">Grand Canyon</div></div></a>
+<a class="day-card locked-day" href="day7.html" data-day="7" aria-label="Day 7, locked"><img src="assets/horseshoe-bend.png" alt="Horseshoe Bend logo"><div><div class="day">DAY 7</div><div class="place">Horseshoe Bend</div></div></a>
+<a class="day-card locked-day" href="day8.html" data-day="8" aria-label="Day 8, locked"><img src="assets/antelope.png" alt="Antelope Canyon logo"><div><div class="day">DAY 8</div><div class="place">Antelope Canyon</div></div></a>
+<a class="day-card locked-day" href="day9.html" data-day="9" aria-label="Day 9, locked"><img src="assets/zion.png" alt="Zion National Park logo"><div><div class="day">DAY 9</div><div class="place">Zion National Park</div></div></a>
+<a class="day-card locked-day" href="day10.html" data-day="10" aria-label="Day 10, locked"><img src="assets/vegas.png" alt="Las Vegas logo"><div><div class="day">DAY 10</div><div class="place">Las Vegas</div></div></a>
+<a class="day-card locked-day" href="day11.html" data-day="11" aria-label="Day 11, locked"><img src="assets/downtown-vegas.png" alt="Downtown Las Vegas logo"><div><div class="day">DAY 11</div><div class="place">Downtown Las Vegas</div></div></a>
+<a class="day-card locked-day" href="day12.html" data-day="12" aria-label="Day 12, locked"><img src="assets/leaving-las-vegas.png" alt="Leaving Las Vegas logo"><div><div class="day">DAY 12</div><div class="place">Leaving Las Vegas</div></div></a>
+</section><nav class="navrow"><a class="btn" href="index.html">← Back to cover</a></nav><footer class="footer">Old Fart Travel • 2026 Edition</footer></main><div class="password-modal" id="passwordModal" hidden>
+  <div class="password-dialog" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+    <h2 id="passwordTitle">Unlock Day</h2>
+    <p class="password-clue" id="passwordClue"></p>
+    <form id="passwordForm">
+      <label for="passwordInput"><strong>Your answer</strong></label>
+      <input class="password-input" id="passwordInput" name="answer" autocomplete="off" autocapitalize="none" spellcheck="false">
+      <div class="password-hint">Spaces and capitalization are ignored.</div>
+      <div class="password-actions">
+        <button class="password-submit" type="submit">Unlock this day</button>
+        <button class="password-cancel" type="button" id="passwordCancel">Cancel</button>
+      </div>
+      <p class="password-error" id="passwordError" aria-live="polite"></p>
+    </form>
+  </div>
+</div><script>
+(() => {
+  const gates = {
+    2: { answer: "Jenny", clue: "One of the sights we'll see today is the site of a famous scene from Forrest Gump. Can you name the love of Forrest Gump's life?" },
+    3: { answer: "NewMexico", clue: "We visited the Four Corners. Which state is Four Corners Park technically in?" },
+    4: { answer: "Submarine", clue: "Two years ago, on our Pink Jeep Tour in Sedona, we stopped for photos at one formation named for its resemblance to this manmade object that spends most of its time underwater." },
+    5: { answer: "Brooks", clue: "Happy birthday to Bill Vanko, who shares the occasion with the man born this date in 1937 who directed America's “Miracle on Ice.” What was his last name?" },
+    6: { answer: "ElTovar", clue: "We are staying at Kachina Lodge on the South Rim of the Grand Canyon, but where did we check in when we arrived?" },
+    7: { answer: "Ferris", clue: "Lunch today is at the famed Cameron Trading Post en route to Page. Cameron is a major character in which Matthew Broderick film? One-word answer only." },
+    8: { answer: "283", clue: "Day 7 of our Old Fart Adventure was presented by Buc-ee's and its newest location in Goodyear, Arizona. How many miles away is it?" },
+    9: { answer: "FatBoy", clue: "Happy Birthday to John! Nixon resigned, Sharon Tate was murdered, and the atomic bomb was dropped on Nagasaki on his birthday. What was the bomb's name? Hint: Its tie to John is fitting." },
+    10: { answer: "Surprise", clue: "This Arizona city hosts spring training for both the Texas Rangers and Kansas City Royals—and it also describes what you'll experience when you open Day 11." },
+    11: { answer: "DankeSchoen", clue: "There is no living performer with closer ties to Las Vegas than Wayne Newton, known best for this classic tune." },
+    12: { answer: "Snowcap", clue: "If you take the Route 66 way home to Tucson, this is where you will stop in Seligman to check the status of the OFT sticker." }
+  };
+
+  const normalize = value => String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const storageKey = day => `oft-unlocked-day-${day}`;
+  const modal = document.getElementById("passwordModal");
+  const title = document.getElementById("passwordTitle");
+  const clue = document.getElementById("passwordClue");
+  const form = document.getElementById("passwordForm");
+  const input = document.getElementById("passwordInput");
+  const error = document.getElementById("passwordError");
+  const cancel = document.getElementById("passwordCancel");
+  let activeLink = null;
+
+  document.querySelectorAll(".locked-day").forEach(link => {
+    const day = Number(link.dataset.day);
+    if (localStorage.getItem(storageKey(day)) === "yes") {
+      link.classList.add("is-unlocked");
+      link.setAttribute("aria-label", `Day ${day}, unlocked`);
+    }
+    link.addEventListener("click", event => {
+      if (localStorage.getItem(storageKey(day)) === "yes") return;
+      event.preventDefault();
+      activeLink = link;
+      title.textContent = `Unlock Day ${day}`;
+      clue.textContent = gates[day].clue;
+      input.value = "";
+      error.textContent = "";
+      modal.hidden = false;
+      setTimeout(() => input.focus(), 0);
+    });
+  });
+
+  const closeModal = () => {
+    modal.hidden = true;
+    activeLink = null;
+  };
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    if (!activeLink) return;
+    const day = Number(activeLink.dataset.day);
+    if (normalize(input.value) === normalize(gates[day].answer)) {
+      localStorage.setItem(storageKey(day), "yes");
+      activeLink.classList.add("is-unlocked");
+      activeLink.setAttribute("aria-label", `Day ${day}, unlocked`);
+      window.location.href = activeLink.href;
+    } else {
+      error.textContent = "That answer did not unlock the day. Try again.";
+      input.select();
+    }
+  });
+
+  cancel.addEventListener("click", closeModal);
+  modal.addEventListener("click", event => { if (event.target === modal) closeModal(); });
+  document.addEventListener("keydown", event => { if (event.key === "Escape" && !modal.hidden) closeModal(); });
+})();
+</script></body></html>

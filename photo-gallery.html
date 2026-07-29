@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#173f2b">
+  <title>Old Fart Photo Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+</head>
+<body class="gallery-page">
+  <main class="gallery-shell">
+    <header class="gallery-header">
+      <a class="gallery-back" href="index.html">← Back to Cover</a>
+      <h1>Old Fart Photo Gallery</h1>
+      <p>Tap any image to enlarge it.</p>
+    </header>
+
+    <section class="gallery-list" aria-label="Photo gallery">
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-01.png" alt="Old Fart gallery image 1" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-02.png" alt="Old Fart gallery image 2" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-03.webp" alt="Old Fart gallery image 3" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-04.webp" alt="Old Fart gallery image 4" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-05.jpg" alt="Old Fart gallery image 5" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-06.webp" alt="Old Fart gallery image 6" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-07.png" alt="Old Fart gallery image 7" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-08.png" alt="Old Fart gallery image 8" loading="lazy">
+      </figure>
+      <figure class="gallery-item">
+        <img class="gallery-thumb" src="assets/gallery-09.png" alt="Old Fart gallery image 9" loading="lazy">
+      </figure>
+    </section>
+
+    <p class="gallery-note">Tap an enlarged image, the red ×, or the dark background to close it.</p>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded gallery image">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close enlarged image">×</button>
+    <img id="lightboxImage" src="" alt="">
+    <p class="lightbox-hint">Tap to close</p>
+  </div>
+
+  <script>
+    (() => {
+      const box = document.getElementById('lightbox');
+      const full = document.getElementById('lightboxImage');
+      const closeButton = document.getElementById('lightboxClose');
+      const thumbs = document.querySelectorAll('.gallery-thumb');
+
+      function openImage(img) {
+        full.src = img.src;
+        full.alt = img.alt;
+        box.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      }
+
+      function closeImage() {
+        box.classList.remove('open');
+        document.body.style.overflow = '';
+        full.src = '';
+      }
+
+      thumbs.forEach(img => {
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', img.alt + '. Tap to enlarge.');
+        img.addEventListener('click', () => openImage(img));
+        img.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openImage(img);
+          }
+        });
+      });
+
+      box.addEventListener('click', closeImage);
+      closeButton.addEventListener('click', event => {
+        event.stopPropagation();
+        closeImage();
+      });
+      full.addEventListener('click', closeImage);
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && box.classList.contains('open')) closeImage();
+      });
+    })();
+  </script>
+</body>
+</html>

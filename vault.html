@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#173f2b">
+  <title>Inside the Vault • Old Fart Travel</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background:#101713; }
+    .vault-shell {
+      width:min(920px,calc(100% - 28px));
+      margin:24px auto 110px;
+      color:#201d17;
+    }
+    .vault-header {
+      padding:26px 20px;
+      text-align:center;
+      border:4px solid #d7a93d;
+      border-radius:22px;
+      background:#173f2b;
+      color:#fff;
+      box-shadow:0 12px 28px rgba(0,0,0,.35);
+    }
+    .vault-header h1 { margin:0; color:#f3c85a; font-family:Georgia,serif; }
+    .vault-header p { margin:10px 0 0; }
+    .vault-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+      margin-top:20px;
+    }
+    .vault-card {
+      display:block;
+      padding:22px;
+      border:3px solid #d7a93d;
+      border-radius:18px;
+      background:#f6f0df;
+      color:#201d17;
+      text-decoration:none;
+      box-shadow:0 8px 20px rgba(0,0,0,.24);
+    }
+    .vault-card:hover { transform:translateY(-2px); }
+    .vault-card h2 { margin:0 0 8px; color:#173f2b; font-family:Georgia,serif; }
+    .vault-card p { margin:0; line-height:1.45; }
+    .vault-card .icon { font-size:2.2rem; display:block; margin-bottom:10px; }
+    .coming { opacity:.72; }
+    .controls { text-align:center; margin-top:22px; }
+    .controls a, .controls button {
+      display:inline-block;
+      margin:6px;
+      padding:12px 18px;
+      border:0;
+      border-radius:999px;
+      background:#7a1111;
+      color:#fff;
+      font:inherit;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    @media(max-width:640px) { .vault-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main class="vault-shell">
+    <header class="vault-header">
+      <h1>WELCOME INSIDE THE VAULT</h1>
+      <p>You touched the thing you were told not to touch. Naturally, there are rewards.</p>
+    </header>
+
+    <section class="vault-grid" aria-label="Vault bonus features">
+      <a class="vault-card" href="video-gallery.html">
+        <span class="icon" aria-hidden="true">🎬</span>
+        <h2>The Old Fart Video Vault</h2>
+        <p>Thirty-four brief cinematic disturbances from the Old Fart Travel production department.</p>
+      </a>
+
+      <div class="vault-card coming">
+        <span class="icon" aria-hidden="true">📸</span>
+        <h2>Static Photo Gallery</h2>
+        <p>Coming next: logos, posters, ads, and other evidence that this project got completely out of hand.</p>
+      </div>
+
+      <div class="vault-card coming">
+        <span class="icon" aria-hidden="true">🛠️</span>
+        <h2>How We Almost Lost It</h2>
+        <p>The behind-the-scenes account of the GitHub disaster, the rescue, and the rebuild.</p>
+      </div>
+
+      <div class="vault-card coming">
+        <span class="icon" aria-hidden="true">🎞️</span>
+        <h2>Post-Credits Scene</h2>
+        <p>Classified. Destiny may eventually call.</p>
+      </div>
+    </section>
+
+    <div class="controls">
+      <a href="index.html">Return to Cover</a>
+      <button id="lock-vault" type="button">Lock the Vault</button>
+    </div>
+  </main>
+
+  <script>
+    if (localStorage.getItem('oft-vault-unlocked') !== 'yes') {
+      window.location.replace('vault-door.html');
+    }
+
+    document.getElementById('lock-vault').addEventListener('click', function () {
+      localStorage.removeItem('oft-vault-unlocked');
+      window.location.href = 'vault-door.html';
+    });
+  </script>
+</body>
+</html>

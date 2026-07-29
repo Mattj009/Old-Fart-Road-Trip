@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>Restricted Area • Old Fart Travel</title>
+  <style>
+    :root { --gold:#d7a93d; --red:#7a1111; --paper:#f6f0df; }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      background:
+        radial-gradient(circle at center, #353535 0, #151515 58%, #050505 100%);
+      color:#fff;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+    .door {
+      width:min(520px,100%);
+      padding:32px 24px;
+      text-align:center;
+      border:8px solid #555;
+      border-radius:28px;
+      background:linear-gradient(145deg,#2d2d2d,#111);
+      box-shadow:0 18px 45px rgba(0,0,0,.55), inset 0 0 0 3px #000;
+    }
+    .wheel {
+      width:150px;
+      height:150px;
+      margin:0 auto 22px;
+      display:grid;
+      place-items:center;
+      border:12px solid #777;
+      border-radius:50%;
+      background:#1c1c1c;
+      color:var(--gold);
+      font-size:4rem;
+      box-shadow:inset 0 0 0 8px #333;
+    }
+    h1 { margin:0 0 8px; font-family:Georgia,serif; color:var(--gold); }
+    p { line-height:1.45; }
+    label { display:block; margin:24px 0 8px; font-weight:800; }
+    input {
+      width:100%;
+      padding:14px 16px;
+      border:3px solid var(--gold);
+      border-radius:12px;
+      font:inherit;
+      font-size:1.1rem;
+      text-align:center;
+      text-transform:uppercase;
+    }
+    button, .back {
+      display:inline-block;
+      margin-top:14px;
+      padding:13px 20px;
+      border:0;
+      border-radius:999px;
+      background:var(--red);
+      color:#fff;
+      font:inherit;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .back { background:#444; margin-left:8px; }
+    #message { min-height:1.4em; margin-top:14px; font-weight:800; color:#ffd36b; }
+    .hint { font-size:.92rem; color:#ccc; }
+  </style>
+</head>
+<body>
+  <main class="door">
+    <div class="wheel" aria-hidden="true">⚙</div>
+    <h1>THE OLD FART VAULT</h1>
+    <p>Restricted bonus material. Unauthorized touching was specifically discouraged.</p>
+
+    <form id="vault-form">
+      <label for="password">Speak the password</label>
+      <input id="password" name="password" autocomplete="off" autofocus>
+      <button type="submit">UNLOCK THE VAULT</button>
+      <a class="back" href="index.html">Retreat</a>
+      <div id="message" role="status" aria-live="polite"></div>
+    </form>
+
+    <p class="hint">Capitalization and spaces do not matter.</p>
+  </main>
+
+  <script>
+    const form = document.getElementById('vault-form');
+    const field = document.getElementById('password');
+    const message = document.getElementById('message');
+
+    function normalize(value) {
+      return value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (normalize(field.value) === 'DINNERROLLS') {
+        localStorage.setItem('oft-vault-unlocked', 'yes');
+        window.location.href = 'vault.html';
+      } else {
+        message.textContent = 'ACCESS DENIED. Step away from the dinner rolls.';
+        field.select();
+      }
+    });
+  </script>
+</body>
+</html>

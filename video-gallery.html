@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#173f2b">
+  <title>Bonus Feature • Old Fart Video Vault</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .video-stage {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+    }
+    .video-stage.is-closed {
+      display: none;
+    }
+    .player-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 0 10px;
+    }
+    .close-video {
+      appearance: none;
+      border: 2px solid var(--gold);
+      border-radius: 999px;
+      padding: 10px 18px;
+      background: var(--forest);
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 13px rgba(0,0,0,.2);
+    }
+    .close-video:hover {
+      background: var(--forest2);
+      transform: translateY(-1px);
+    }
+    .close-video:focus-visible {
+      outline: 4px solid #fff;
+      outline-offset: 3px;
+    }
+    .player-wrap {
+      background: #0b0b0b;
+      border: 3px solid var(--gold);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(0,0,0,.24);
+    }
+    #vault-player {
+      display: block;
+      width: 100%;
+      max-height: 70vh;
+      background: #000;
+    }
+    .now-playing {
+      padding: 14px 16px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .now-playing strong {
+      display: block;
+      color: var(--forest);
+      font-family: Georgia,'Times New Roman',serif;
+      font-size: 1.2rem;
+    }
+    .now-playing span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 16px;
+    }
+    .video-card {
+      position: relative;
+      width: 100%;
+      border: 2px solid #ded8c7;
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 0;
+      background: #fff;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,.12);
+    }
+    .video-card:hover {
+      transform: translateY(-2px);
+    }
+    .video-card:focus-visible {
+      outline: 4px solid var(--forest);
+      outline-offset: 3px;
+    }
+    .video-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #111;
+    }
+    .video-card-copy {
+      display: block;
+      padding: 12px 42px 13px 13px;
+    }
+    .video-card-copy strong {
+      display: block;
+      color: var(--forest);
+      font-size: 1.02rem;
+    }
+    .video-card-copy small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+    .play-mark {
+      position: absolute;
+      right: 12px;
+      bottom: 16px;
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: #fff;
+      font-size: .8rem;
+    }
+    .video-card.active {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(215,169,61,.25);
+    }
+    @media(max-width:850px) {
+      .video-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+      .video-stage {position: static;}
+    }
+    @media(max-width:560px) {
+      .video-grid {grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body class="day-page">
+<main class="shell">
+
+<header class="topbar">
+  <img src="assets/roadtrip.png" alt="Road Trip Logo">
+  <div>
+    <h1>Bonus Feature</h1>
+    <p class="kicker">The Old Fart Video Vault</p>
+  </div>
+</header>
+
+<nav class="navrow" aria-label="Page navigation">
+  <a class="btn" href="day12.html">← Day 12</a>
+  <a class="btn" href="itinerary.html">Twelve-Day Lineup</a>
+  <a class="btn" href="index.html">Cover →</a>
+</nav>
+
+<section class="panel">
+  <h2>THE OLD FART VIDEO VAULT</h2>
+  <p class="lead">Thirty-four brief cinematic disturbances from the Old Fart Travel production department.</p>
+  <p>Select any title below. The chosen video will play in the screen at the top of the gallery.</p>
+</section>
+
+<section class="panel video-stage" id="video-stage">
+  <div class="player-toolbar">
+    <button class="close-video" id="close-video" type="button" aria-label="Close video player">✕ Close Video</button>
+  </div>
+  <div class="player-wrap">
+    <video id="vault-player" controls playsinline preload="metadata"
+           poster="assets/video-thumbnails/amazing-race.jpg">
+      <source src="assets/videos/amazing-race.mp4" type="video/mp4">
+      Your browser does not support embedded video.
+    </video>
+    <div class="now-playing" aria-live="polite">
+      <strong id="now-title">The Amazing Race</strong>
+      <span id="now-caption">Old Fart Travel enters the race.</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="panel gallery-section">
+  <h2>Television &amp; Movies</h2>
+  <div class="video-grid">
+    
+        <button class="video-card" type="button"
+                data-src="assets/videos/amazing-race.mp4"
+                data-title="The Amazing Race"
+                data-caption="Old Fart Travel enters the race.">
+          <img src="assets/video-thumbnails/amazing-race.jpg" alt="The Amazing Race video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>The Amazing Race</strong>
+            <small>Old Fart Travel enters the race.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/survivor.mp4"
+                data-title="Survivor"
+                data-caption="Outwit. Outplay. Outlast. Then find a clean bathroom.">
+          <img src="assets/video-thumbnails/survivor.jpg" alt="Survivor video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Survivor</strong>
+            <small>Outwit. Outplay. Outlast. Then find a clean bathroom.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/toontown-5.mp4"
+                data-title="Toontown V"
+                data-caption="Another dispatch from the animated frontier.">
+          <img src="assets/video-thumbnails/toontown-5.jpg" alt="Toontown V video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Toontown V</strong>
+            <small>Another dispatch from the animated frontier.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/toontown-3.mp4"
+                data-title="Toontown III"
+                data-caption="The cartoon universe continues.">
+          <img src="assets/video-thumbnails/toontown-3.jpg" alt="Toontown III video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Toontown III</strong>
+            <small>The cartoon universe continues.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/toontown-2.mp4"
+                data-title="Toontown II"
+                data-caption="The sequel nobody knew they needed.">
+          <img src="assets/video-thumbnails/toontown-2.jpg" alt="Toontown II video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Toontown II</strong>
+            <small>The sequel nobody knew they needed.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/toontown-1.mp4"
+                data-title="Toontown I"
+                data-caption="Where the animated trouble began.">
+          <img src="assets/video-thumbnails/toontown-1.jpg" alt="Toontown I video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Toontown I</strong>
+            <small>Where the animated trouble began.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/animal-house.mp4"
+                data-title="Animal House"
+                data-caption="Old Fart Travel goes collegiate.">
+          <img src="assets/video-thumbnails/animal-house.jpg" alt="Animal House video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Animal House</strong>
+            <small>Old Fart Travel goes collegiate.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/haunted-mansion.mp4"
+                data-title="Haunted Mansion"
+                data-caption="Room for one more Old Fart.">
+          <img src="assets/video-thumbnails/haunted-mansion.jpg" alt="Haunted Mansion video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Haunted Mansion</strong>
+            <small>Room for one more Old Fart.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/muppets.mp4"
+                data-title="The Muppets"
+                data-caption="It is time to start the music.">
+          <img src="assets/video-thumbnails/muppets.jpg" alt="The Muppets video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>The Muppets</strong>
+            <small>It is time to start the music.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/toy-story.mp4"
+                data-title="Toy Story"
+                data-caption="The file said Tot Story. The toys know better.">
+          <img src="assets/video-thumbnails/toy-story.jpg" alt="Toy Story video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Toy Story</strong>
+            <small>The file said Tot Story. The toys know better.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/mickey-halloween.mp4"
+                data-title="Mickey Halloween"
+                data-caption="A seasonal greeting from the Mouse.">
+          <img src="assets/video-thumbnails/mickey-halloween.jpg" alt="Mickey Halloween video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Mickey Halloween</strong>
+            <small>A seasonal greeting from the Mouse.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/blazing-saddles.mp4"
+                data-title="Blazing Saddles"
+                data-caption="The West was never going to remain dignified.">
+          <img src="assets/video-thumbnails/blazing-saddles.jpg" alt="Blazing Saddles video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Blazing Saddles</strong>
+            <small>The West was never going to remain dignified.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/casey-kasem.mp4"
+                data-title="Casey Kasem"
+                data-caption="Keep your feet on the ground and keep reaching for the road.">
+          <img src="assets/video-thumbnails/casey-kasem.jpg" alt="Casey Kasem video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Casey Kasem</strong>
+            <small>Keep your feet on the ground and keep reaching for the road.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/cnn.mp4"
+                data-title="CNN"
+                data-caption="Breaking news from the Old Fart media desk.">
+          <img src="assets/video-thumbnails/cnn.jpg" alt="CNN video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>CNN</strong>
+            <small>Breaking news from the Old Fart media desk.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+  </div>
+</section>
+<section class="panel gallery-section">
+  <h2>Teams &amp; Trouble</h2>
+  <div class="video-grid">
+    
+        <button class="video-card" type="button"
+                data-src="assets/videos/redskins.mp4"
+                data-title="Washington Football"
+                data-caption="A burgundy-and-gold Old Fart production.">
+          <img src="assets/video-thumbnails/redskins.jpg" alt="Washington Football video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Washington Football</strong>
+            <small>A burgundy-and-gold Old Fart production.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/vandals.mp4"
+                data-title="Vandals"
+                data-caption="Property damage, but make it cinematic.">
+          <img src="assets/video-thumbnails/vandals.jpg" alt="Vandals video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Vandals</strong>
+            <small>Property damage, but make it cinematic.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/raiders.mp4"
+                data-title="Raiders"
+                data-caption="A commitment to excellence—and flatulence.">
+          <img src="assets/video-thumbnails/raiders.jpg" alt="Raiders video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Raiders</strong>
+            <small>A commitment to excellence—and flatulence.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+  </div>
+</section>
+<section class="panel gallery-section">
+  <h2>Road Trip Destinations</h2>
+  <div class="video-grid">
+    
+        <button class="video-card" type="button"
+                data-src="assets/videos/winslow.mp4"
+                data-title="Winslow"
+                data-caption="Standing on the corner, naturally.">
+          <img src="assets/video-thumbnails/winslow.jpg" alt="Winslow video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Winslow</strong>
+            <small>Standing on the corner, naturally.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/coffee-pot.mp4"
+                data-title="Coffee Pot Rock"
+                data-caption="Sedona scenery, Old Fart style.">
+          <img src="assets/video-thumbnails/coffee-pot.jpg" alt="Coffee Pot Rock video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Coffee Pot Rock</strong>
+            <small>Sedona scenery, Old Fart style.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/leaving-las-vegas.mp4"
+                data-title="Leaving Las Vegas"
+                data-caption="Every great trip eventually reaches the credits.">
+          <img src="assets/video-thumbnails/leaving-las-vegas.jpg" alt="Leaving Las Vegas video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Leaving Las Vegas</strong>
+            <small>Every great trip eventually reaches the credits.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/mob-museum.mp4"
+                data-title="The Mob Museum"
+                data-caption="An offer the itinerary could not refuse.">
+          <img src="assets/video-thumbnails/mob-museum.jpg" alt="The Mob Museum video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>The Mob Museum</strong>
+            <small>An offer the itinerary could not refuse.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/red-rock-pool.mp4"
+                data-title="Red Rock Pool"
+                data-caption="Cabana life in motion.">
+          <img src="assets/video-thumbnails/red-rock-pool.jpg" alt="Red Rock Pool video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Red Rock Pool</strong>
+            <small>Cabana life in motion.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/t-bones.mp4"
+                data-title="T-Bones"
+                data-caption="Dinner gets the full theatrical treatment.">
+          <img src="assets/video-thumbnails/t-bones.jpg" alt="T-Bones video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>T-Bones</strong>
+            <small>Dinner gets the full theatrical treatment.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/downtown-vegas.mp4"
+                data-title="Downtown Las Vegas"
+                data-caption="Neon, noise, and Old Fart nightlife.">
+          <img src="assets/video-thumbnails/downtown-vegas.jpg" alt="Downtown Las Vegas video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Downtown Las Vegas</strong>
+            <small>Neon, noise, and Old Fart nightlife.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/pioneer-saloon.mp4"
+                data-title="Pioneer Saloon"
+                data-caption="A historic stop with a short-form trailer.">
+          <img src="assets/video-thumbnails/pioneer-saloon.jpg" alt="Pioneer Saloon video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Pioneer Saloon</strong>
+            <small>A historic stop with a short-form trailer.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+  </div>
+</section>
+<section class="panel gallery-section">
+  <h2>Old Fart Travel Originals</h2>
+  <div class="video-grid">
+    
+        <button class="video-card" type="button"
+                data-src="assets/videos/oft-ad.mp4"
+                data-title="Old Fart Travel Ad"
+                data-caption="A message from the travel company itself.">
+          <img src="assets/video-thumbnails/oft-ad.jpg" alt="Old Fart Travel Ad video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Old Fart Travel Ad</strong>
+            <small>A message from the travel company itself.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/fartys.mp4"
+                data-title="Farty&#x27;s"
+                data-caption="Fine dining from a highly questionable sponsor.">
+          <img src="assets/video-thumbnails/fartys.jpg" alt="Farty&#x27;s video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Farty&#x27;s</strong>
+            <small>Fine dining from a highly questionable sponsor.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/team-trebek.mp4"
+                data-title="Team Trebek"
+                data-caption="The trivia dynasty receives its opening credits.">
+          <img src="assets/video-thumbnails/team-trebek.jpg" alt="Team Trebek video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Team Trebek</strong>
+            <small>The trivia dynasty receives its opening credits.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/old-fart-flag.mp4"
+                data-title="The Old Fart Flag"
+                data-caption="Long may it wave.">
+          <img src="assets/video-thumbnails/old-fart-flag.jpg" alt="The Old Fart Flag video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>The Old Fart Flag</strong>
+            <small>Long may it wave.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/subway.mp4"
+                data-title="Subway"
+                data-caption="The unofficial official meal of the itinerary.">
+          <img src="assets/video-thumbnails/subway.jpg" alt="Subway video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Subway</strong>
+            <small>The unofficial official meal of the itinerary.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/tide-pods.mp4"
+                data-title="Tide Pods"
+                data-caption="Laundry advice no travel guide should need.">
+          <img src="assets/video-thumbnails/tide-pods.jpg" alt="Tide Pods video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Tide Pods</strong>
+            <small>Laundry advice no travel guide should need.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/iced-tea.mp4"
+                data-title="Iced Tea"
+                data-caption="Refreshment receives a dramatic entrance.">
+          <img src="assets/video-thumbnails/iced-tea.jpg" alt="Iced Tea video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Iced Tea</strong>
+            <small>Refreshment receives a dramatic entrance.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/robin-and-joanie.mp4"
+                data-title="Robin &amp; Joanie"
+                data-caption="The leading ladies of Old Fart Travel.">
+          <img src="assets/video-thumbnails/robin-and-joanie.jpg" alt="Robin &amp; Joanie video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Robin &amp; Joanie</strong>
+            <small>The leading ladies of Old Fart Travel.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+        <button class="video-card" type="button"
+                data-src="assets/videos/fathers-day.mp4"
+                data-title="Father&#x27;s Day"
+                data-caption="A family holiday, Old Fart edition.">
+          <img src="assets/video-thumbnails/fathers-day.jpg" alt="Father&#x27;s Day video thumbnail" loading="lazy">
+          <span class="video-card-copy">
+            <strong>Father&#x27;s Day</strong>
+            <small>A family holiday, Old Fart edition.</small>
+          </span>
+          <span class="play-mark" aria-hidden="true">▶</span>
+        </button>
+  </div>
+</section>
+
+<nav class="navrow" aria-label="Page navigation">
+  <a class="btn" href="day12.html">← Day 12</a>
+  <a class="btn" href="itinerary.html">Twelve-Day Lineup</a>
+  <a class="btn" href="index.html">Cover →</a>
+</nav>
+
+<footer class="footer">Bonus Feature • Old Fart Travel • 2026 Edition</footer>
+</main>
+
+<nav class="bottom-nav" aria-label="Quick navigation">
+  <a href="itinerary.html"><span class="nav-icon">🗺️</span><span>Lineup</span></a>
+  <a href="index.html"><span class="nav-icon">🏠</span><span>Cover</span></a>
+  <a href="day12.html"><span class="nav-icon">🔚</span><span>Day 12</span></a>
+</nav>
+
+<script>
+  const player = document.getElementById('vault-player');
+  const title = document.getElementById('now-title');
+  const caption = document.getElementById('now-caption');
+  const stage = document.getElementById('video-stage');
+  const closeButton = document.getElementById('close-video');
+  const cards = document.querySelectorAll('.video-card');
+  let activeCard = null;
+
+  function openPlayer(card) {
+    cards.forEach(item => item.classList.remove('active'));
+    card.classList.add('active');
+    activeCard = card;
+    stage.classList.remove('is-closed');
+    player.src = card.dataset.src;
+    title.textContent = card.dataset.title;
+    caption.textContent = card.dataset.caption;
+    player.load();
+    const playPromise = player.play();
+    if (playPromise) playPromise.catch(() => {});
+    stage.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
+  function closePlayer() {
+    player.pause();
+    stage.classList.add('is-closed');
+    if (activeCard) {
+      activeCard.scrollIntoView({behavior: 'smooth', block: 'center'});
+      activeCard.focus({preventScroll: true});
+    }
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => openPlayer(card));
+  });
+
+  closeButton.addEventListener('click', closePlayer);
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !stage.classList.contains('is-closed')) {
+      closePlayer();
+    }
+  });
+</script>
+</body>
+</html>

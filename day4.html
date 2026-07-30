@@ -10,6 +10,12 @@
     .breakfast-logo {display:block;width:min(100%,420px);height:auto;margin:1rem auto;border-radius:18px}
     .daily-bonus img {display:block;width:min(100%,900px);height:auto;margin:1rem auto 0;border-radius:18px}
   </style>
+<script>
+  // Prevent direct navigation from bypassing the Day 4 password.
+  if (localStorage.getItem('oft-unlocked-day-4') !== 'yes') {
+    window.location.replace('itinerary.html');
+  }
+</script>
 </head>
 <body class="day-page">
 <main class="shell">

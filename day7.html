@@ -6,6 +6,12 @@
 <meta name="theme-color" content="#173f2b">
 <title>Day 7 • Grand Canyon to Page</title>
 <link rel="stylesheet" href="styles.css">
+<script>
+  // Prevent direct navigation from bypassing the Day 7 password.
+  if (localStorage.getItem('oft-unlocked-day-7') !== 'yes') {
+    window.location.replace('itinerary.html');
+  }
+</script>
 </head>
 <body class="day-page">
 <main class="shell">

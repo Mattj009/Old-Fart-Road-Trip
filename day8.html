@@ -15,6 +15,12 @@
       margin:0 auto;
     }
   </style>
+<script>
+  // Prevent direct navigation from bypassing the Day 8 password.
+  if (localStorage.getItem('oft-unlocked-day-8') !== 'yes') {
+    window.location.replace('itinerary.html');
+  }
+</script>
 </head>
 <body class="day-page">
 <main class="shell">

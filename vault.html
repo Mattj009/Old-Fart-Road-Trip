@@ -24,6 +24,29 @@
     }
     .vault-header h1 { margin:0; color:#f3c85a; font-family:Georgia,serif; }
     .vault-header p { margin:10px 0 0; }
+    .wanted-feature {
+      display:block;
+      margin-top:20px;
+      padding:14px;
+      border:3px solid #d7a93d;
+      border-radius:18px;
+      background:#1a120d;
+      box-shadow:0 8px 20px rgba(0,0,0,.3);
+      text-decoration:none;
+    }
+    .wanted-feature img {
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:12px;
+    }
+    .wanted-feature p {
+      margin:12px 6px 2px;
+      color:#f3c85a;
+      font-weight:900;
+      text-align:center;
+      letter-spacing:.04em;
+    }
     .vault-grid {
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -68,6 +91,11 @@
       <h1>WELCOME INSIDE THE VAULT</h1>
       <p>You touched the thing you were told not to touch. Naturally, there are rewards.</p>
     </header>
+
+    <a class="wanted-feature" href="wanted-poster.html" aria-label="Open the Desert Divas wanted poster and video">
+      <img src="assets/wanted-poster.png" alt="Wanted poster for Joan and Robin, the Desert Divas">
+      <p>CLICK THE POSTER TO WATCH THE VIDEO</p>
+    </a>
 
     <section class="vault-grid" aria-label="Vault bonus features">
       <a class="vault-card" href="video-gallery.html">

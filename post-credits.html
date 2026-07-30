@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <title>Post-Credits Scene • Old Fart Travel</title>
+  <style>
+    * { box-sizing:border-box; }
+    html, body { min-height:100%; margin:0; }
+    body {
+      background:#050505;
+      color:#f7f1dc;
+      font-family:Arial,Helvetica,sans-serif;
+      text-align:center;
+    }
+    .screen {
+      width:min(900px,calc(100% - 28px));
+      margin:0 auto;
+      padding:36px 0 70px;
+    }
+    .gate, .scene {
+      border:2px solid #c9a847;
+      border-radius:22px;
+      padding:28px 20px;
+      background:linear-gradient(180deg,#171717,#080808);
+      box-shadow:0 16px 42px rgba(0,0,0,.6);
+    }
+    h1, h2 {
+      margin:0 0 14px;
+      font-family:Georgia,serif;
+      color:#e2c15d;
+      letter-spacing:.04em;
+    }
+    .eyebrow {
+      margin:0 0 10px;
+      font-weight:900;
+      letter-spacing:.16em;
+      color:#bbb;
+      font-size:.82rem;
+    }
+    p { line-height:1.55; }
+    input {
+      width:min(420px,100%);
+      margin:12px 0;
+      padding:14px 16px;
+      border:2px solid #c9a847;
+      border-radius:12px;
+      background:#fff;
+      color:#111;
+      font-size:1.05rem;
+      text-align:center;
+    }
+    button, .button {
+      display:inline-block;
+      margin:8px 5px;
+      padding:13px 20px;
+      border:0;
+      border-radius:999px;
+      background:#7a1111;
+      color:#fff;
+      text-decoration:none;
+      font:inherit;
+      font-weight:900;
+      cursor:pointer;
+    }
+    #error { min-height:1.3em; color:#ff9c9c; font-weight:700; }
+    .scene { display:none; padding:20px; }
+    video {
+      display:block;
+      width:100%;
+      max-height:68vh;
+      margin:14px auto 24px;
+      border-radius:16px;
+      background:#000;
+    }
+    .message {
+      max-width:700px;
+      margin:24px auto 0;
+      padding:24px 20px;
+      border-top:1px solid #65572c;
+    }
+    .message p { margin:12px 0; }
+    .signature {
+      margin-top:22px !important;
+      color:#e2c15d;
+      font-family:Georgia,serif;
+      font-size:1.2rem;
+      font-weight:bold;
+    }
+    .finale {
+      margin:28px 0 8px;
+      color:#e2c15d;
+      font:900 clamp(1.5rem,7vw,3.2rem) Georgia,serif;
+      letter-spacing:.08em;
+    }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <section class="gate" id="gate">
+      <p class="eyebrow">CLASSIFIED OLD FART TRAVEL ARCHIVE</p>
+      <h1>One More Thing…</h1>
+      <p>The road trip may be over, but the credits are not.</p>
+      <input id="password" type="password" autocomplete="off"
+             placeholder="Enter the secret passage password"
+             aria-label="Secret passage password">
+      <br>
+      <button id="unlock" type="button">Roll the Post-Credits Scene</button>
+      <p id="error" role="alert"></p>
+      <a class="button" href="vault.html">Back to the Vault</a>
+    </section>
+
+    <section class="scene" id="scene">
+      <p class="eyebrow">OLD FART TRAVEL PRESENTS</p>
+      <h1>Destiny Is Calling</h1>
+
+      <video id="destinyVideo" controls playsinline preload="metadata">
+        <source src="assets/videos/destiny-calling.mp4" type="video/mp4">
+        Your browser cannot play this video.
+      </video>
+
+      <div class="message">
+        <h2>A Final Word from Jacob</h2>
+        <p>John told me he had a fun little vacation project in mind.</p>
+        <p>What followed was twelve days of road-trip planning, passwords, playlists, movie posters, fake advertisements, video vaults, dinner rolls, one nearly catastrophic technological collapse—and a guidebook unlike anything four people have ever taken into the desert.</p>
+        <p>John built it because the trip mattered. More importantly, he built it because the people taking the trip mattered.</p>
+        <p>So, Robin, Joan and Bill: when something in this guide makes you laugh, remember that every ridiculous detail was put here by someone who could not wait to share the road with you.</p>
+        <p>And John: you did not merely plan a vacation. You made the opening credits.</p>
+        <p class="signature">— Jacob</p>
+      </div>
+
+      <div class="finale">TO BE CONTINUED…</div>
+      <p>Next stop: Disney Destiny.</p>
+      <a class="button" href="vault.html">Return to the Vault</a>
+    </section>
+  </main>
+
+  <script>
+    const normalize = value => value.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    function revealScene() {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('scene').style.display = 'block';
+      localStorage.setItem('oft-post-credits-unlocked', 'yes');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function tryUnlock() {
+      const value = document.getElementById('password').value;
+      if (normalize(value) === 'grantwood') {
+        revealScene();
+      } else {
+        document.getElementById('error').textContent =
+          'That is not the secret passage password.';
+      }
+    }
+
+    document.getElementById('unlock').addEventListener('click', tryUnlock);
+    document.getElementById('password').addEventListener('keydown', event => {
+      if (event.key === 'Enter') tryUnlock();
+    });
+
+    if (localStorage.getItem('oft-post-credits-unlocked') === 'yes') {
+      revealScene();
+    }
+  </script>
+</body>
+</html>

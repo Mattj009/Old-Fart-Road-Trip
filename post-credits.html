@@ -142,7 +142,6 @@
     function revealScene() {
       document.getElementById('gate').style.display = 'none';
       document.getElementById('scene').style.display = 'block';
-      localStorage.setItem('oft-post-credits-unlocked', 'yes');
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
@@ -161,9 +160,6 @@
       if (event.key === 'Enter') tryUnlock();
     });
 
-    if (localStorage.getItem('oft-post-credits-unlocked') === 'yes') {
-      revealScene();
-    }
   </script>
 </body>
 </html>

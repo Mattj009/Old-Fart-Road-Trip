@@ -19,17 +19,32 @@
 <body>
   <main>
     <section class="poster">
-      <img src="assets/wanted-poster.png" alt="Wanted poster for Joan and Robin, the Desert Divas">
+      <button id="playPoster" type="button" aria-label="Play the Desert Divas video" style="all:unset;display:block;width:100%;cursor:pointer;">
+        <img src="assets/wanted-poster.png" alt="Wanted poster for Joan and Robin, the Desert Divas">
+      </button>
     </section>
     <section class="video-panel">
       <h1>The Desert Divas</h1>
       <p>They didn’t get far… but it was fun trying.</p>
-      <video controls playsinline preload="metadata">
+      <video id="desertDivasVideo" controls playsinline preload="metadata">
         <source src="assets/videos/robin-joanie.mp4" type="video/mp4">
         Your browser cannot play this video.
       </video>
       <a class="back" href="vault.html">Return to the Vault</a>
     </section>
   </main>
+  <script>
+    const posterButton = document.getElementById('playPoster');
+    const video = document.getElementById('desertDivasVideo');
+
+    posterButton.addEventListener('click', async () => {
+      video.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try {
+        await video.play();
+      } catch (error) {
+        // Some browsers may still require tapping the video's own play control.
+      }
+    });
+  </script>
 </body>
 </html>
